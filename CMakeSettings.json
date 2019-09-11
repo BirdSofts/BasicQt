@@ -16,7 +16,8 @@
           "value": "C:/Qt/5.13.1/msvc2017_64",
           "type": "PATH"
         }
-      ]
+      ],
+      "intelliSenseMode": "windows-msvc-x64"
     }
   ]
 }

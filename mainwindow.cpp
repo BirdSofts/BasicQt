@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,10.09.2019</created>
-/// <changed>ʆϒʅ,11.09.2019</changed>
+/// <changed>ʆϒʅ,12.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -11,14 +11,14 @@
 #include "./ui_mainwindow.h"
 
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow ( QWidget* parent )
+  : QMainWindow ( parent )
+  , ui ( new Ui::MainWindow )
 {
-    ui->setupUi(this);
+  ui->setupUi ( this );
 }
 
-MainWindow::~MainWindow()
+MainWindow::~MainWindow ()
 {
-    delete ui;
+  delete ui;
 }
