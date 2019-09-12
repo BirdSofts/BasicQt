@@ -60,16 +60,16 @@ I appreciate any contribution from anyone, who sees that the project deserves hi
 # References
 <table>
 <tr>
-<td><a href="https://doc.qt.io/">Qt Documentation</a></td>
-</tr>
-<tr>
-<td><a href="https://docs.microsoft.com/">Microsoft Docs</a></td>
+<td><a href="https://doc.qt.io/qt-5/reference-overview.html">Qt Reference</a></td>
 </tr>
 <tr>
 <td><a href="http://www.cplusplus.com/">cplusplus.com</a></td>
 </tr>
 <tr>
 <td><a href="https://en.cppreference.com/">cppreference.com</a></td>
+</tr>
+<tr>
+<td><a href="https://docs.microsoft.com/">Microsoft Docs</a></td>
 </tr>
 </table>
 

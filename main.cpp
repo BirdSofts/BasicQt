@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,10.09.2019</created>
-/// <changed>ʆϒʅ,12.09.2019</changed>
+/// <changed>ʆϒʅ,13.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -19,11 +19,13 @@ int main ( int argc, char* argv [] )
   MainWindow w;
   w.show ();
 
-  QFont font ( "Courier" );
-  QPushButton button ( "Hello world!" );
-  button.setFont ( font );
-  button.setToolTip ( "The Hello from the button." );
-  button.show ();
+  w.setStyle ( 1 );
+
+  //QFont font ( "Courier" );
+  //QPushButton button ( "Hello world!" );
+  //button.setFont ( font );
+  //button.setToolTip ( "The Hello from the button." );
+  //button.show ();
 
   return a.exec ();
 }

@@ -3,13 +3,15 @@
 #/ 
 #/ </summary>
 #/ <created>ʆϒʅ,10.09.2019</created>
-#/ <changed>ʆϒʅ,11.09.2019</changed>
+#/ <changed>ʆϒʅ,13.09.2019</changed>
 # *******************************************************************************************
 
 
 cmake_minimum_required(VERSION 3.5)
 
 set(TARGET_NAME LearningQt)
+
+set(RELEASE_FLAG OFF)
 
 set(PROJECT_NAME ${TARGET_NAME})
 
@@ -53,11 +55,13 @@ endif(MSVC)
 
 list(APPEND HEADER_FILES
             mainwindow.h
+            style.h
 )
 
 list(APPEND SOURCE_FILES
             main.cpp
             mainwindow.cpp
+            style.cpp
 )
 
 list(APPEND UI_FILES
@@ -69,10 +73,15 @@ if(WIN32)
           list(APPEND SOURCE_FILES ${UI_FILES})
 endif()
 
+if(WIN32)
+add_executable(${TARGET_NAME} WIN32 ${SOURCE_FILES} ${RESOURCES})
+else()
 add_executable(${TARGET_NAME} ${SOURCE_FILES} ${RESOURCES})
+endif(WIN32)
 
 target_link_libraries(${TARGET_NAME} PRIVATE Qt5::Widgets)
 
+if(MSVC)
 add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
           COMMAND cmake -E copy_if_different
           #$ENV{UserProfile}.../__.dll
@@ -83,13 +92,21 @@ add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
           ${QT_BINARIES}/Qt5Widgetsd.dll
           $<TARGET_FILE_DIR:${TARGET_NAME}>
 )
+endif(MSVC)
 
+if(RELEASE_FLAG)
 if(GNUCXX)
   add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
           COMMAND cmake -E copy_if_different
           ${QT_BINARIES}/libgcc_s_seh-1.dll
           ${QT_BINARIES}/libstdc++-6.dll
           ${QT_BINARIES}/libwinpthread-1.dll
+          ${QT_BINARIES}/Qt5Core.dll
+          ${QT_BINARIES}/Qt5Cored.dll
+          ${QT_BINARIES}/Qt5Guid.dll
+          ${QT_BINARIES}/Qt5Widgets.dll
+          ${QT_BINARIES}/Qt5Widgetsd.dll
           $<TARGET_FILE_DIR:${TARGET_NAME}>
   )
 endif(GNUCXX)
+endif(RELEASE_FLAG)
