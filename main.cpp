@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,10.09.2019</created>
-/// <changed>ʆϒʅ,13.09.2019</changed>
+/// <changed>ʆϒʅ,14.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -19,8 +19,7 @@ int main ( int argc, char* argv [] )
   MainWindow w;
   w.show ();
 
-  w.setStyle ( 1 );
-
+  // a window with one button
   //QFont font ( "Courier" );
   //QPushButton button ( "Hello world!" );
   //button.setFont ( font );

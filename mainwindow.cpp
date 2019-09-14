@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,10.09.2019</created>
-/// <changed>ʆϒʅ,13.09.2019</changed>
+/// <changed>ʆϒʅ,14.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -11,20 +11,44 @@
 #include "./ui_mainwindow.h"
 
 
-MainWindow::MainWindow ( QWidget* parent )
-  : QMainWindow ( parent )
-  , ui ( new Ui::MainWindow ), style ( nullptr )
+MainWindow::MainWindow ()
+  : style ( nullptr )
 {
   try
   {
 
-    ui->setupUi ( this );
+    QWidget* widget = new QWidget;
+    setCentralWidget ( widget );
+
+    QWidget* menuBar = new QWidget;
+    menuBar->setSizePolicy ( QSizePolicy::Expanding, QSizePolicy::Expanding );
+
+    QWidget* statusBar = new QWidget;
+    statusBar->setSizePolicy ( QSizePolicy::Expanding, QSizePolicy::Expanding );
+
+    QVBoxLayout* layout = new QVBoxLayout;
+    layout->setContentsMargins ( 2, 2, 2, 2 );
+
+    layout->addWidget ( menuBar );
+    layout->addWidget ( statusBar );
+    widget->setLayout ( layout );
+
+    createActions ();
+    createMenus ();
+
+    //QString message { "Menus can be chosen! :)" };
+    //QString message = tr ( "Menus can be chosen! :)" );
+    //statusBar ()->showMessage ( message );
+
+    setWindowTitle ( tr ( "Qt GUI" ) );
+    setMinimumSize ( 240, 160 );
+    resize ( 480, 320 );
 
     style = new AppStyle;
 
-    ui->centralwidget->setStyleSheet ( style->theme.form );
-    ui->menubar->setStyleSheet ( style->theme.menu );
-    ui->statusbar->setStyleSheet ( style->theme.status );
+    this->centralWidget ()->setStyleSheet ( style->theme.form );
+    this->menuBar ()->setStyleSheet ( style->theme.menu );
+    this->statusBar ()->setStyleSheet ( style->theme.status );
 
   }
   catch (const std::exception& ex)
@@ -37,20 +61,61 @@ MainWindow::MainWindow ( QWidget* parent )
 MainWindow::~MainWindow ()
 {
   delete style;
-  delete ui;
 }
 
 
-void MainWindow::setStyle ( unsigned short index )
+void MainWindow::themeOne ( void )
+{
+  if (!actionTheme->isChecked ())
+  {
+    actionTheme->toggled ( false );
+    setStyle ( 0 );
+  } else
+  {
+    actionTheme->toggled ( true );
+    setStyle ( 1 );
+  }
+};
+
+
+void MainWindow::createActions ( void )
+{
+  actionTheme = new QAction ( tr ( "Theme" ), this );
+  actionTheme->setShortcut ( QKeySequence::AddTab ); // Ctrl+T
+  actionTheme->setCheckable ( true );
+  actionTheme->setStatusTip ( tr ( "Set the application theme" ) );
+  connect ( actionTheme, &QAction::triggered, this, &MainWindow::themeOne );
+};
+
+
+void MainWindow::createMenus ( void )
+{
+  menuFile = menuBar ()->addMenu ( tr ( "&File" ) );
+  menuView = menuBar ()->addMenu ( tr ( "&View" ) );
+  menuView->addAction ( actionTheme );
+};
+
+
+//#ifndef QT_NO_CONTEXTMENU
+//void MainWindow::contextMenuEvent ( QContextMenuEvent* event )
+//{
+//  QMenu menu ( this );
+//  menu.addAction ( actionTheme );
+//  menu.exec ( event->globalPos () );
+//};
+//#endif // QT_NO_CONTEXTMENU
+
+
+void MainWindow::setStyle ( unsigned char index )
 {
 
   style->set ( index );
 
   if (style->getLoaded ())
   {
-    ui->centralwidget->setStyleSheet ( style->theme.form );
-    ui->menubar->setStyleSheet ( style->theme.menu );
-    ui->statusbar->setStyleSheet ( style->theme.status );
+    this->centralWidget ()->setStyleSheet ( style->theme.form );
+    this->menuBar ()->setStyleSheet ( style->theme.menu );
+    this->statusBar ()->setStyleSheet ( style->theme.status );
   }
 
 };

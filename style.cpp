@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,12.09.2019</created>
-/// <changed>ʆϒʅ,13.09.2019</changed>
+/// <changed>ʆϒʅ,14.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -135,19 +135,25 @@ void AppStyle::setDefaults ( void )
 
 void AppStyle::set ( unsigned char index )
 {
-  unsigned short temp { current };
-  loaded = false;
-  current = index;
-  theme.form = "";
-  theme.menu = "";
-  theme.status = "";
-  if (load ())
-    loaded = true;
-  else
+
+  if (index)
   {
-    current = temp;
+    unsigned short temp { current };
+    loaded = false;
+    current = index;
+    theme.form = "";
+    theme.menu = "";
+    theme.status = "";
+    if (load ())
+      loaded = true;
+    else
+    {
+      current = temp;
+      setDefaults ();
+    }
+  } else
     setDefaults ();
-  }
+
 };
 
 

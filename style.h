@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,12.09.2019</created>
-/// <changed>ʆϒʅ,13.09.2019</changed>
+/// <changed>ʆϒʅ,14.09.2019</changed>
 // *******************************************************************************************
 
 #ifndef STYLE_H
@@ -15,8 +15,6 @@
 #include <fstream>
 #include <sstream>
 #include <qstring.h>
-
-//#include "mainwindow.h"
 
 
 enum Sphare { enumForm = 0, enumMenu, enumStatusBar };
