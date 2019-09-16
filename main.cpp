@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,10.09.2019</created>
-/// <changed>ʆϒʅ,14.09.2019</changed>
+/// <changed>ʆϒʅ,16.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -15,6 +15,7 @@
 
 int main ( int argc, char* argv [] )
 {
+
   QApplication a ( argc, argv );
   MainWindow w;
   w.show ();
@@ -27,4 +28,5 @@ int main ( int argc, char* argv [] )
   //button.show ();
 
   return a.exec ();
+
 }

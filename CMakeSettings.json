@@ -30,6 +30,11 @@
           "name": "Qt5Widgets_DIR",
           "value": "C:/Qt/5.13.1/msvc2017_64/lib/cmake/Qt5Widgets",
           "type": "PATH"
+        },
+        {
+          "name": "UNITTEST_LIBRARY",
+          "value": "$$(VCInstallDir)/Auxiliary/VS/UnitTest/lib/x64/Microsoft.VisualStudio.TestTools.CppUnitTestFramework.lib",
+          "type": "FILEPATH"
         }
       ],
       "intelliSenseMode": "windows-msvc-x64"

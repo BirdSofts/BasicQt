@@ -63,6 +63,12 @@ I appreciate any contribution from anyone, who sees that the project deserves hi
 <td><a href="https://doc.qt.io/qt-5/reference-overview.html">Qt Reference</a></td>
 </tr>
 <tr>
+<td><a href="https://stackoverflow.com">Stackoverflow</a></td>
+</tr>
+<tr>
+<td><a href="https://cmake.org/cmake/help/latest/">CMake Documentation</a></td>
+</tr>
+<tr>
 <td><a href="http://www.cplusplus.com/">cplusplus.com</a></td>
 </tr>
 <tr>
