@@ -3,23 +3,21 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,10.09.2019</created>
-/// <changed>ʆϒʅ,15.09.2019</changed>
+/// <changed>ʆϒʅ,18.09.2019</changed>
 // *******************************************************************************************
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 
+#include <qapplication.h>
+#include <qdesktopwidget.h>
 #include <qmainwindow.h>
 #include <qmenu.h>
 #include <qboxlayout.h>
 
 #include "style.h"
-
-
-//QT_BEGIN_NAMESPACE
-//namespace Ui { class MainWindow; }
-//QT_END_NAMESPACE
+#include "screenshot.h"
 
 
 class MainWindow : public QMainWindow
@@ -35,21 +33,25 @@ private:
 //  void contextMenuEvent ( QContextMenuEvent* ) override;
 //#endif // QT_NO_CONTEXTMENU
 
-  AppStyle* style; // application theme
+  AppStyle* appStyle; // application theme
 
   // private slots: to respond to the user actions on the menu entries,
   // most of which display the action's path in the central main window widget.
 private slots:
-  void themeOne ( void );
+  void themeOne ( void ); // first theme
+  void screenShot ( void );
 
 private:
   QMenu* menuFile; // menu widget
+  QAction* actionScreenShot; // abstract user interface action, insertable into widgets
   QMenu* menuView;
+  QAction* actionTheme;
   //QActionGroup* alignmentGroup; // to group the actions
-  QAction* actionTheme; // abstract user interface action, insertable into widgets
 
-  void createActions ( void );
-  void createMenus ( void );
+  ScreenShot* windowScreenShot; // screen shot window wrapper
+
+  void createActions ( void ); // main window menu actions creator
+  void createMenus ( void ); // main window menu creator
 
 public:
   MainWindow ();

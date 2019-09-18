@@ -3,7 +3,7 @@
 #/ 
 #/ </summary>
 #/ <created>ʆϒʅ,10.09.2019</created>
-#/ <changed>ʆϒʅ,16.09.2019</changed>
+#/ <changed>ʆϒʅ,18.09.2019</changed>
 # *******************************************************************************************
 
 
@@ -60,12 +60,14 @@ endif(MSVC)
 
 list(APPEND HEADER_FILES
           mainwindow.h
+          screenshot.h
           style.h
 )
 
 list(APPEND SOURCE_FILES
           main.cpp
           mainwindow.cpp
+          screenshot.cpp
           style.cpp
 )
 
@@ -86,6 +88,12 @@ endif(WIN32)
 
 target_link_libraries(${TARGET_NAME}
           PUBLIC Qt5::Widgets
+          )
+
+add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
+          COMMAND cmake -E copy_if_different
+          ${CMAKE_CURRENT_SOURCE_DIR}/theme.css
+          $<TARGET_FILE_DIR:${TARGET_NAME}>
           )
 
 if(MSVC)

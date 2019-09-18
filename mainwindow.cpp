@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,10.09.2019</created>
-/// <changed>ʆϒʅ,15.09.2019</changed>
+/// <changed>ʆϒʅ,18.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -12,7 +12,7 @@
 
 
 MainWindow::MainWindow ()
-  : style ( nullptr )
+  : appStyle ( nullptr ), windowScreenShot ( nullptr )
 {
   try
   {
@@ -44,11 +44,11 @@ MainWindow::MainWindow ()
     setMinimumSize ( 240, 160 );
     resize ( 480, 320 );
 
-    style = new AppStyle;
+    appStyle = new AppStyle;
 
-    this->centralWidget ()->setStyleSheet ( style->theme.form );
-    this->menuBar ()->setStyleSheet ( style->theme.menu );
-    this->statusBar ()->setStyleSheet ( style->theme.status );
+    this->centralWidget ()->setStyleSheet ( appStyle->theme.form );
+    this->menuBar ()->setStyleSheet ( appStyle->theme.menu );
+    this->statusBar ()->setStyleSheet ( appStyle->theme.status );
 
   }
   catch (const std::exception& ex)
@@ -60,7 +60,11 @@ MainWindow::MainWindow ()
 
 MainWindow::~MainWindow ()
 {
-  delete style;
+  if (windowScreenShot)
+    delete windowScreenShot;
+
+  if (appStyle)
+    delete appStyle;
 }
 
 
@@ -78,8 +82,26 @@ void MainWindow::themeOne ( void )
 };
 
 
+void MainWindow::screenShot ( void )
+{
+  if (!windowScreenShot)
+  {
+    windowScreenShot = new ScreenShot ( this->centralWidget (), appStyle );
+    windowScreenShot->move ( QApplication::desktop ()->availableGeometry ( windowScreenShot ).topLeft () + QPoint ( 50, 50 ) );
+    windowScreenShot->show ();
+  } else
+    if (windowScreenShot->getInitialized ())
+    {
+      windowScreenShot->show ();
+    }
+};
+
+
 void MainWindow::createActions ( void )
 {
+  actionScreenShot = new QAction ( tr ( "ScreenShot" ), this );
+  connect ( actionScreenShot, &QAction::triggered, this, &MainWindow::screenShot );
+
   actionTheme = new QAction ( tr ( "Theme" ), this );
   actionTheme->setShortcut ( QKeySequence::AddTab ); // Ctrl+T
   actionTheme->setCheckable ( true );
@@ -91,6 +113,8 @@ void MainWindow::createActions ( void )
 void MainWindow::createMenus ( void )
 {
   menuFile = menuBar ()->addMenu ( tr ( "&File" ) );
+  menuFile->addAction ( actionScreenShot );
+
   menuView = menuBar ()->addMenu ( tr ( "&View" ) );
   menuView->addAction ( actionTheme );
 };
@@ -109,13 +133,18 @@ void MainWindow::createMenus ( void )
 void MainWindow::setStyle ( unsigned char index )
 {
 
-  style->set ( index );
+  appStyle->set ( index );
 
-  if (style->getLoaded ())
+  if (appStyle->getLoaded ())
   {
-    this->centralWidget ()->setStyleSheet ( style->theme.form );
-    this->menuBar ()->setStyleSheet ( style->theme.menu );
-    this->statusBar ()->setStyleSheet ( style->theme.status );
+    this->centralWidget ()->setStyleSheet ( appStyle->theme.form );
+    this->menuBar ()->setStyleSheet ( appStyle->theme.menu );
+    this->statusBar ()->setStyleSheet ( appStyle->theme.status );
+
+    if (windowScreenShot)
+    {
+      windowScreenShot->updateStyle ();
+    }
   }
 
 };

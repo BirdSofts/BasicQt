@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,12.09.2019</created>
-/// <changed>ʆϒʅ,14.09.2019</changed>
+/// <changed>ʆϒʅ,18.09.2019</changed>
 // *******************************************************************************************
 
 #ifndef STYLE_H
@@ -40,8 +40,8 @@ public:
   AppStyle ();
   //~AppStyle ( void );
   void setDefaults ( void ); // defaults
-  void set ( unsigned char );
-  const bool getLoaded ( void );
+  void set ( unsigned char ); // set theme index
+  const bool getLoaded ( void ); // load theme style-sheet file
 };
 
 

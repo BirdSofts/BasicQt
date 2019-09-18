@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,12.09.2019</created>
-/// <changed>ʆϒʅ,14.09.2019</changed>
+/// <changed>ʆϒʅ,18.09.2019</changed>
 // *******************************************************************************************
 
 
@@ -17,7 +17,7 @@ AppStyle::AppStyle () :
   {
 
     paths [0] = "defaults";
-    paths [1] = "C:/Users/Mehrdad/Source/Repos/LearningQt/theme.css";
+    paths [1] = "./theme.css";
 
     setDefaults ();
 
