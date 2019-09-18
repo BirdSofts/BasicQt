@@ -3,7 +3,7 @@
 #/ 
 #/ </summary>
 #/ <created>ʆϒʅ,10.09.2019</created>
-#/ <changed>ʆϒʅ,18.09.2019</changed>
+#/ <changed>ʆϒʅ,19.09.2019</changed>
 # *******************************************************************************************
 
 
@@ -26,12 +26,16 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 include(CTest)
 
-if(MSVC)
-          set(QT_BINARIES "C:/Qt/5.13.1/msvc2017_64/bin")
-          set(Qt5_DIR "C:/Qt/5.13.1/mingw73_64/lib/cmake/Qt5")
-else(MSVC)
-          set(QT_BINARIES "C:/Qt/5.13.1/mingw73_64/bin")
-endif(MSVC)
+if(NOT CMAKE_MODULE_PATH)
+          if(MSVC)
+            set(QT_BINARIES "C:/Qt/5.13.1/msvc2017_64/bin")
+            set(Qt5_DIR "C:/Qt/5.13.1/msvc2017_64/lib/cmake/Qt5")
+          else(MSVC)
+            set(QT_BINARIES "C:/Qt/5.13.1/mingw73_64/bin")
+          endif(MSVC)
+endif()
+
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -39,8 +43,6 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 enable_testing()
 
@@ -71,13 +73,13 @@ list(APPEND SOURCE_FILES
           style.cpp
 )
 
-list(APPEND UI_FILES
-          mainwindow.ui
-)
+#list(APPEND UI_FILES
+#          mainwindow.ui
+#)
 
 if(WIN32)
           list(APPEND SOURCE_FILES ${HEADER_FILES})
-          list(APPEND SOURCE_FILES ${UI_FILES})
+#          list(APPEND SOURCE_FILES ${UI_FILES})
 endif(WIN32)
 
 if(WIN32)

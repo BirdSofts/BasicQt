@@ -12,26 +12,6 @@
       "ctestCommandArgs": "",
       "variables": [
         {
-          "name": "Qt5_DIR",
-          "value": "C:/Qt/5.13.1/msvc2017_64",
-          "type": "PATH"
-        },
-        {
-          "name": "Qt5Core_DIR",
-          "value": "C:/Qt/5.13.1/msvc2017_64/lib/cmake/Qt5Core",
-          "type": "PATH"
-        },
-        {
-          "name": "Qt5Gui_DIR",
-          "value": "C:/Qt/5.13.1/msvc2017_64/lib/cmake/Qt5Gui",
-          "type": "PATH"
-        },
-        {
-          "name": "Qt5Widgets_DIR",
-          "value": "C:/Qt/5.13.1/msvc2017_64/lib/cmake/Qt5Widgets",
-          "type": "PATH"
-        },
-        {
           "name": "UNITTEST_LIBRARY",
           "value": "$$(VCInstallDir)/Auxiliary/VS/UnitTest/lib/x64/Microsoft.VisualStudio.TestTools.CppUnitTestFramework.lib",
           "type": "FILEPATH"
