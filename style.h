@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,12.09.2019</created>
-/// <changed>ʆϒʅ,18.09.2019</changed>
+/// <changed>ʆϒʅ,01.10.2019</changed>
 // *******************************************************************************************
 
 #ifndef STYLE_H
@@ -31,7 +31,7 @@ class AppStyle
 private:
   std::string paths [2]; // paths to application theme files
   unsigned short current; // current application theme index
-  bool loaded; // true if loading was successful
+  bool loaded; // true when loading of theme file was successful
 
   bool load ( void ); // theme files loader
 public:
@@ -41,7 +41,7 @@ public:
   //~AppStyle ( void );
   void setDefaults ( void ); // defaults
   void set ( unsigned char ); // set theme index
-  const bool getLoaded ( void ); // load theme style-sheet file
+  const bool getLoaded ( void ); // get the status of loading procedure
 };
 
 
