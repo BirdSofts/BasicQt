@@ -1,11 +1,10 @@
 ﻿# *******************************************************************************************
 #/ <summary>
-#/ 
+#/
 #/ </summary>
 #/ <created>ʆϒʅ,10.09.2019</created>
-#/ <changed>ʆϒʅ,19.09.2019</changed>
+#/ <changed>ʆϒʅ,14.10.2019</changed>
 # *******************************************************************************************
-
 
 cmake_minimum_required(VERSION 3.5)
 
@@ -16,24 +15,15 @@ set(RELEASE_FLAG OFF)
 set(PROJECT_NAME ${TARGET_NAME})
 
 project(${PROJECT_NAME}
-          VERSION 0.1.0.0
-          DESCRIPTION "Qt notes and examples"
-          HOMEPAGE_URL "https://github.com/BirdSofts/LearningQt"
-          LANGUAGES CXX
-)
+  VERSION 0.1.0.0
+  DESCRIPTION "Qt notes and examples"
+  HOMEPAGE_URL "https://github.com/BirdSofts/LearningQt"
+  LANGUAGES CXX
+  )
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 include(CTest)
-
-if(NOT CMAKE_MODULE_PATH)
-          if(MSVC)
-            set(QT_BINARIES "C:/Qt/5.13.1/msvc2017_64/bin")
-            set(Qt5_DIR "C:/Qt/5.13.1/msvc2017_64/lib/cmake/Qt5")
-          else(MSVC)
-            set(QT_BINARIES "C:/Qt/5.13.1/mingw73_64/bin")
-          endif(MSVC)
-endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
@@ -49,80 +39,68 @@ enable_testing()
 #include_directories(CMAKE_CURRENT_SOURCE_DIR)
 
 if(MSVC)
-#          add_subdirectory(vstests)
-          add_subdirectory(gtests)
+#  add_subdirectory(vstests)
+  add_subdirectory(gtests)
 endif(MSVC)
 
 if(MSVC)
   list(APPEND RESOURCES
-          ${TARGET_NAME}.rc
-          resource.h
-  )
+    ${TARGET_NAME}.rc
+    resource.h
+    )
 endif(MSVC)
 
 list(APPEND HEADER_FILES
-          mainwindow.h
-          screenshot.h
-          style.h
-)
+  mainwindow.h
+  screenshot.h
+  style.h
+  )
 
 list(APPEND SOURCE_FILES
-          main.cpp
-          mainwindow.cpp
-          screenshot.cpp
-          style.cpp
-)
+  main.cpp
+  mainwindow.cpp
+  screenshot.cpp
+  style.cpp
+  )
 
 #list(APPEND UI_FILES
-#          mainwindow.ui
-#)
+#  mainwindow.ui
+#  )
 
 if(WIN32)
-          list(APPEND SOURCE_FILES ${HEADER_FILES})
-#          list(APPEND SOURCE_FILES ${UI_FILES})
+  list(APPEND SOURCE_FILES ${HEADER_FILES})
+  #          list(APPEND SOURCE_FILES ${UI_FILES})
 endif(WIN32)
 
 if(WIN32)
-          add_executable(${TARGET_NAME} WIN32 ${SOURCE_FILES} ${RESOURCES})
+  add_executable(${TARGET_NAME} WIN32 ${SOURCE_FILES} ${RESOURCES})
 else(WIN32)
-          add_executable(${TARGET_NAME} ${SOURCE_FILES} ${RESOURCES})
+  add_executable(${TARGET_NAME} ${SOURCE_FILES} ${RESOURCES})
 endif(WIN32)
 
 target_link_libraries(${TARGET_NAME}
-          PUBLIC Qt5::Widgets
-          )
+  PUBLIC Qt5::Widgets
+  )
 
 add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
-          COMMAND cmake -E copy_if_different
-          ${CMAKE_CURRENT_SOURCE_DIR}/theme.css
-          $<TARGET_FILE_DIR:${TARGET_NAME}>
-          )
-
-if(MSVC)
-          add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
-            COMMAND cmake -E copy_if_different
-            ${QT_BINARIES}/Qt5Core.dll
-            ${QT_BINARIES}/Qt5Cored.dll
-            ${QT_BINARIES}/Qt5Guid.dll
-            ${QT_BINARIES}/Qt5Widgets.dll
-            ${QT_BINARIES}/Qt5Widgetsd.dll
-            $<TARGET_FILE_DIR:${TARGET_NAME}>
-            )
-endif(MSVC)
+  COMMAND cmake -E copy_if_different
+  ${CMAKE_CURRENT_SOURCE_DIR}/theme.css
+  $<TARGET_FILE_DIR:${TARGET_NAME}>
+  )
 
 if(RELEASE_FLAG)
   if(GNUCXX)
-          add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
-            COMMAND cmake -E copy_if_different
-            ${QT_BINARIES}/libgcc_s_seh-1.dll
-            ${QT_BINARIES}/libstdc++-6.dll
-            ${QT_BINARIES}/libwinpthread-1.dll
-            ${QT_BINARIES}/Qt5Core.dll
-            ${QT_BINARIES}/Qt5Cored.dll
-            ${QT_BINARIES}/Qt5Guid.dll
-            ${QT_BINARIES}/Qt5Widgets.dll
-            ${QT_BINARIES}/Qt5Widgetsd.dll
-            $<TARGET_FILE_DIR:${TARGET_NAME}>
-          )
+    add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
+      COMMAND cmake -E copy_if_different
+      ${QT_BINARIES}/libgcc_s_seh-1.dll
+      ${QT_BINARIES}/libstdc++-6.dll
+      ${QT_BINARIES}/libwinpthread-1.dll
+      ${QT_BINARIES}/Qt5Core.dll
+      ${QT_BINARIES}/Qt5Cored.dll
+      ${QT_BINARIES}/Qt5Guid.dll
+      ${QT_BINARIES}/Qt5Widgets.dll
+      ${QT_BINARIES}/Qt5Widgetsd.dll
+      $<TARGET_FILE_DIR:${TARGET_NAME}>
+      )
   endif(GNUCXX)
 endif(RELEASE_FLAG)
