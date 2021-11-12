@@ -8,7 +8,7 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-set(TARGET_NAME LearningQt)
+set(TARGET_NAME QtIntroduction)
 
 set(RELEASE_FLAG OFF)
 
@@ -17,7 +17,7 @@ set(PROJECT_NAME ${TARGET_NAME})
 project(${PROJECT_NAME}
   VERSION 0.1.0.0
   DESCRIPTION "Qt notes and examples"
-  HOMEPAGE_URL "https://github.com/BirdSofts/LearningQt"
+  HOMEPAGE_URL "https://github.com/BirdSofts/QtIntroduction"
   LANGUAGES CXX
   )
 
