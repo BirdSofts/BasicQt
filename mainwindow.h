@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,10.09.2019</created>
-/// <changed>ʆϒʅ,18.09.2019</changed>
+/// <changed>ʆϒʅ,27.04.2022</changed>
 // *******************************************************************************************
 
 #ifndef MAINWINDOW_H
@@ -11,7 +11,7 @@
 
 
 #include <qapplication.h>
-#include <qdesktopwidget.h>
+#include <qwidget.h>
 #include <qmainwindow.h>
 #include <qmenu.h>
 #include <qboxlayout.h>

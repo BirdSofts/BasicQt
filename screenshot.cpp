@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,17.09.2019</created>
-/// <changed>ʆϒʅ,14.10.2019</changed>
+/// <changed>ʆϒʅ,27.04.2022</changed>
 // *******************************************************************************************
 
 #include "screenshot.h"
@@ -20,7 +20,7 @@ ScreenShot::ScreenShot ( QWidget* mainWindow, AppStyle* styleObj )
   lableScrShot->setSizePolicy ( QSizePolicy::Expanding, QSizePolicy::Expanding );
   lableScrShot->setAlignment ( Qt::AlignCenter );
 
-  const QRect screenGeo = QApplication::desktop ()->screenGeometry ( this );
+  const QRect screenGeo = QApplication::primaryScreen ()->geometry ();
   lableScrShot->setMinimumSize ( screenGeo.width () / 8, screenGeo.height () / 8 );
 
   QVBoxLayout* layoutWindow = new QVBoxLayout ( this );
@@ -71,7 +71,7 @@ void ScreenShot::resizeEvent ( QResizeEvent* event )
 {
   QSize scaledSize = pixmapShot.size ();
   scaledSize.scale ( lableScrShot->size (), Qt::KeepAspectRatio );
-  if (!lableScrShot->pixmap () || scaledSize != lableScrShot->pixmap ()->size ())
+  if (!lableScrShot->pixmap () || scaledSize != lableScrShot->pixmap ().size ())
   {
     updateScrShot ();
   }
@@ -127,7 +127,7 @@ void ScreenShot::saveScrShot ( void )
 void ScreenShot::shootScrShot ( void )
 {
   QScreen* screen = QGuiApplication::primaryScreen ();
-  if (const QWindow * window = windowHandle ())
+  if (const QWindow* window = windowHandle ())
   {
     screen = window->screen ();
   }

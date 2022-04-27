@@ -3,7 +3,7 @@
 /// 
 /// </summary>
 /// <created>ʆϒʅ,10.09.2019</created>
-/// <changed>ʆϒʅ,14.10.2019</changed>
+/// <changed>ʆϒʅ,27.04.2022</changed>
 // *******************************************************************************************
 
 #include "mainwindow.h"
@@ -86,7 +86,7 @@ void MainWindow::screenShot ( void )
   if (!windowScreenShot)
   {
     windowScreenShot = new ScreenShot ( this->centralWidget (), appStyle );
-    windowScreenShot->move ( QApplication::desktop ()->availableGeometry ( windowScreenShot ).topLeft () + QPoint ( 50, 50 ) );
+    windowScreenShot->move ( QApplication::primaryScreen ()->availableGeometry ().topLeft () + QPoint ( 50, 50 ) );
     windowScreenShot->show ();
   } else
     if (windowScreenShot->getInitialized ())
