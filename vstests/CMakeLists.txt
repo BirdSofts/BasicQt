@@ -15,7 +15,7 @@ set(PROJECT_NAME ${TARGET_NAME})
 project(${PROJECT_NAME}
   VERSION 0.1.0.0
   DESCRIPTION "Visual Studio UnitTests for Qt notes and examples project."
-  HOMEPAGE_URL "https://github.com/BirdSofts/LearningQt"
+  HOMEPAGE_URL "https://github.com/s-mehrdad/QtIntroduction"
   LANGUAGES CXX
   )
 
