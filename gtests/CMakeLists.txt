@@ -1,9 +1,12 @@
-﻿# *******************************************************************************************
+﻿
+# *******************************************************************************************
 #/ <summary>
-#/
+#/ CMakeLists.txt
+#/ QtIntroduction
+#/ created by Mehrdad Solimanimajd on 15.09.2019
 #/ </summary>
-#/ <created>ʆϒʅ,15.09.2019</created>
-#/ <changed>ʆϒʅ,14.10.2019</changed>
+#/ <created>ʆϒʅ, 15.09.2019</created>
+#/ <changed>ʆϒʅ, 11.02.2023</changed>
 # *******************************************************************************************
 
 cmake_minimum_required(VERSION 3.5)
@@ -29,9 +32,9 @@ list(APPEND SOURCE_FILES
   gtests.cpp
   )
 
-if(WIN32)
+#if(WIN32)
   list(APPEND SOURCE_FILES ${HEADER_FILES})
-endif(WIN32)
+#endif(WIN32)
 
 add_executable(${TARGET_NAME} ${SOURCE_FILES})
 

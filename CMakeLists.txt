@@ -1,9 +1,12 @@
-﻿# *******************************************************************************************
+﻿
+# *******************************************************************************************
 #/ <summary>
-#/
+#/ CMakeLists.txt
+#/ QtIntroduction
+#/ created by Mehrdad Solimanimajd on 10.09.2019
 #/ </summary>
-#/ <created>ʆϒʅ,10.09.2019</created>
-#/ <changed>ʆϒʅ,27.04.2022</changed>
+#/ <created>ʆϒʅ, 10.09.2019</created>
+#/ <changed>ʆϒʅ, 11.02.2023</changed>
 # *******************************************************************************************
 
 cmake_minimum_required(VERSION 3.5)
@@ -19,7 +22,7 @@ project(${PROJECT_NAME}
   DESCRIPTION "Qt notes and examples"
   HOMEPAGE_URL "https://github.com/s-mehrdad/QtIntroduction"
   LANGUAGES CXX
-  )
+)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -39,7 +42,7 @@ enable_testing()
 #include_directories(CMAKE_CURRENT_SOURCE_DIR)
 
 if(MSVC)
-#  add_subdirectory(vstests)
+  #  add_subdirectory(vstests)
   add_subdirectory(gtests)
 endif(MSVC)
 
@@ -47,26 +50,26 @@ if(MSVC)
   list(APPEND RESOURCES
     ${TARGET_NAME}.rc
     resource.h
-    )
+  )
 endif(MSVC)
 
 list(APPEND HEADER_FILES
   mainwindow.h
   screenshot.h
   style.h
-  )
+)
 
 list(APPEND SOURCE_FILES
   main.cpp
   mainwindow.cpp
   screenshot.cpp
   style.cpp
-  )
+)
 
 list(APPEND UI_FILES
   mainwindow.ui
   theme.css
-  )
+)
 
 if(WIN32)
   list(APPEND SOURCE_FILES ${HEADER_FILES})
@@ -74,20 +77,31 @@ if(WIN32)
 endif(WIN32)
 
 if(WIN32)
-  add_executable(${TARGET_NAME} WIN32 ${SOURCE_FILES} ${UI_FILES} ${RESOURCES})
+  add_executable(${TARGET_NAME} WIN32
+    ${SOURCE_FILES}
+    ${HEADER_FILES}
+    ${UI_FILES}
+    ${RESOURCES}
+  )
+
 else(WIN32)
-  add_executable(${TARGET_NAME} ${SOURCE_FILES} ${UI_FILES} ${RESOURCES})
+  add_executable(${TARGET_NAME}
+    ${SOURCE_FILES}
+    ${HEADER_FILES}
+    ${UI_FILES}
+    ${RESOURCES}
+  )
 endif(WIN32)
 
 target_link_libraries(${TARGET_NAME}
   PUBLIC Qt6::Widgets
-  )
+)
 
-#add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
-#  COMMAND cmake -E copy_if_different
-#  ${CMAKE_CURRENT_SOURCE_DIR}/theme.css
-#  $<TARGET_FILE_DIR:${TARGET_NAME}>
-#  )
+add_custom_command(TARGET ${TARGET_NAME} PRE_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different
+  ${CMAKE_CURRENT_SOURCE_DIR}/theme.css
+  $<TARGET_FILE_DIR:${TARGET_NAME}>
+  VERBATIM)
 
 #install (FILES theme.css
 #  DESTINATION $<TARGET_FILE_DIR:${TARGET_NAME}>)
@@ -96,7 +110,7 @@ target_link_libraries(${TARGET_NAME}
 #  DESTINATION CMAKE_BINARY_DIR
 #  )
 install (FILES theme.css
-#    FILES ${CMAKE_CURRENT_SOURCE_DIR}/theme.css
+  #    FILES ${CMAKE_CURRENT_SOURCE_DIR}/theme.css
   DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
   PERMISSIONS OWNER_READ
 )
@@ -115,6 +129,6 @@ if(RELEASE_FLAG)
       ${QT_BINARIES}/Qt5Widgets.dll
       ${QT_BINARIES}/Qt5Widgetsd.dll
       $<TARGET_FILE_DIR:${TARGET_NAME}>
-      )
-  endif(GNUCXX)
+    )
+endif(GNUCXX)
 endif(RELEASE_FLAG)
