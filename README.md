@@ -62,4 +62,4 @@ This project is archived and by it read only.
 </table>
 
 # Copyright
-The literature and all the known and unknown ideas provided within the following learning resource is copyrighted. On the other hand, so far the source code is concerned, most of which is learned and inspired from online references and the addition to them can be used under the license terms provided with the software itself additionally paying attention to the open source software license provided by Qt company.
+Refer to license file provided within SOFTWARE itself. Additionally pay attention to open source software license provided by Qt company.
